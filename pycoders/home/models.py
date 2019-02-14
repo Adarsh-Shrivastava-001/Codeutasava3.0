@@ -16,7 +16,6 @@ class Customer(models.Model):
 	friends=models.ManyToManyField('Customer', related_name='_friends', blank=True)
 	wishlist=models.ManyToManyField('Product', related_name='customers_wishlist', blank=True)
 
-
 	def __str__(self):
 		return self.first_name + " " + self.last_name
 
@@ -25,7 +24,7 @@ class Product(models.Model):
 	name=models.CharField(max_length=100,blank=True)
 	brand=models.ForeignKey('Brand', on_delete=models.CASCADE, related_name='products', blank=True)
 	category=models.ManyToManyField('Category', related_name='products', blank=True)
-	description=models.TextField()
+	description=models.TextField(blank=False, null=False)
 	price=models.IntegerField()
 	dicount=models.FloatField()
 	rating=models.IntegerField()
