@@ -11,6 +11,7 @@ class Customer(models.Model):
 	contact_no=models.IntegerField()
 	dob= models.DateTimeField(blank=True)
 	history=models.ManyToManyField('Product', related_name='customers', blank=True)
+	friends=models.ManyToManyField('Customer', related_name='_friends', blank=True)
 
 	def __str__(self):
 		return self.first_name + " " + self.last_name
@@ -32,6 +33,7 @@ class Product(models.Model):
 class Brand(models.Model):
 	name=models.CharField(max_length=100,blank=True)
 	categories_active=models.ManyToManyField('Category', related_name='brands')
+	customers=models.ManyToManyField('Customer', related_name='brands')
 	rating=models.FloatField()	
 
 	def __str__(self):
@@ -42,6 +44,20 @@ class Category(models.Model):
 
 	def __str__(self):
 		return self.name
+
+class Store(models.Model):
+	name=models.CharField(max_length=50)
+	location=models.CharField(max_length=50)
+	email=models.EmailField()
+	contact_no=models.IntegerField()
+	brand=models.ManyToManyField('Brand', related_name='stores')
+	customers=models.ManyToManyField('Customer', related_name='stores')
+
+	def __str__(self):
+		return self.name
+
+
+
 
 
 
