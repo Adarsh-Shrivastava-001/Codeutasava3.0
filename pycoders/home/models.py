@@ -29,7 +29,7 @@ class Product(models.Model):
 	dicount=models.FloatField()
 	rating=models.IntegerField()
 	delivery=models.IntegerField()
-	history=models.ManyToManyField('Customer',related_name='products', blank=True)
+	history=models.ManyToManyField('Customer',related_name='products', blank=True) #To store the users who viewed th product
 
 	def __str__(self):
 		return self.name
