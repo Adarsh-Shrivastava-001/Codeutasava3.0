@@ -9,9 +9,12 @@ class Customer(models.Model):
 	last_name=models.CharField(max_length=25,blank=True)
 	email=models.EmailField(max_length=70,blank=True)
 	contact_no=models.IntegerField()
+	address=models.CharField(max_length=100, blank=True)
+	city=models.CharField(max_length=100, blank=True)
 	dob= models.DateTimeField(blank=True)
 	history=models.ManyToManyField('Product', related_name='customers', blank=True)
 	friends=models.ManyToManyField('Customer', related_name='_friends', blank=True)
+	wishlist=models.ManyToManyField('Product', related_name='customers_wishlist', blank=True)
 
 	def __str__(self):
 		return self.first_name + " " + self.last_name
