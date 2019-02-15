@@ -20,13 +20,25 @@ def update_data():
 		for j in prod_ids:
 			user_pro_mat[cust_id-1][j-1]=1
 
-	for i in range(len(customer)):
+	for i in range(len(customer_set)):
 		pass
 
-	user_pro_mat=pd.DataFrame(mat)
+	user_pro_mat=pd.DataFrame(user_pro_mat)
 	user_pro_mat.to_pickle('User_Prod_Label.pkl')
 
 
+def produt_description(request):
+	product = Product.objects.all().values()
+	print("yes")
+	print(product)
+	descriptions = []
+	for p in product:
+		print(p)
+		descriptions.append(p['name']+' '+p['description'][:-1]) 
+	print(descriptions)
+	descriptions=pd.DataFrame(descriptions)
+	descriptions.to_pickle('descriptions.pkl')
+	return None
 
 
 class ListHome(ListView):

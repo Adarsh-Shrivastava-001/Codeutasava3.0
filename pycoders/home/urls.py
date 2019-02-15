@@ -6,6 +6,6 @@ from .views import *
 app_namne='home'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('show/', ListHome.as_view())
+    path('show/', ListHome.as_view()),
+    path('descriptions/', produt_description),
 ]
