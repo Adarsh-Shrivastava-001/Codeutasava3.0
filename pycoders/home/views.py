@@ -15,9 +15,6 @@ def searchbar(request):
 		if searchterm in (product.category.all()[0].name+product.description):
 			req_list.append(product)
 
-
-
-
 	print(product)
 	
 	context = {'product_list':req_list,'category':searchterm}
