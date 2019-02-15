@@ -7,8 +7,28 @@ from . models import *
 import numpy as np
 import pandas as pd
 
+def searchbar(request):
+	searchterm = request.POST['search']
+	products=Product.objects.all()
+	req_list=[]
+	for product in products:
+		if searchterm in (product.category.all()[0].name+product.description):
+			req_list.append(product)
 
 
+
+
+	print(product)
+	
+	context = {'product_list':req_list,'category':searchterm}
+	return render(request,'product_detail',context)
+	
+	
+
+
+def home(request):
+	return render(request,'home/home.html')
+	
 # Create your views here.
 
 def update_data():
