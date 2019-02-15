@@ -1,13 +1,12 @@
 from django.shortcuts import render
 from django.views.generic import CreateView,DeleteView,UpdateView,ListView,TemplateView,DetailView
 
-
-
 from . models import *
 import numpy as np
 import pandas as pd
 
 def searchbar(request):
+<<<<<<< HEAD
 	searchterm = request.POST['search'].lower()
 	print(searchterm)
 	products=Product.objects.all()
@@ -21,6 +20,30 @@ def searchbar(request):
 
 	
 	context = {'product_list':req_list,'category':searchterm}
+=======
+	searchterm = request.POST['search']
+	products = Product.objects.filter(category__name__icontains=searchterm)
+
+	# print(products)
+	prod1 = Product.objects.filter(description__icontains=searchterm)
+	prod2 = Product.objects.filter(name__icontains=searchterm)
+	prod = prod1|prod2|products
+	print(prod)
+	# req_list=[]
+	# for product in products:
+	# 	# print(product)
+	# 	cat = product.category_set.all()
+	# 	print(cat)
+	# 	if searchterm in product.description:
+	# 		#print(product.category)
+	# 		req_list.append(product)
+
+	# print(product)
+	searchterm = [ p.search.name for p in prod]
+	print(searchterm)
+	
+	context = {'product_list':prod,'category':searchterm}
+>>>>>>> 764b8743c4dd00e5c694ab3b6d99df3f760a8e04
 	return render(request,'home/product_detail.html',context)
 	
 	

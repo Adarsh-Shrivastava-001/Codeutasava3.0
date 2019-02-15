@@ -19,6 +19,11 @@ class Customer(models.Model):
 	def __str__(self):
 		return self.first_name + " " + self.last_name
 
+class SearchTerm(models.Model):
+	name = models.CharField(max_length=100,blank=True, null=True)
+
+	def __str__(self):
+		return self.name
 
 class Product(models.Model):
 	name=models.CharField(max_length=100,blank=True)
@@ -29,6 +34,7 @@ class Product(models.Model):
 	dicount=models.FloatField()
 	rating=models.IntegerField()
 	delivery=models.IntegerField()
+	search = models.ManyToManyField('SearchTerm',related_name='search',blank=True)
 	history=models.ManyToManyField('Customer',related_name='products', blank=True) #To store the users who viewed th product
 	
 
