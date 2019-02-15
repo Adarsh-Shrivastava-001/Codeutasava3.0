@@ -62,7 +62,12 @@ class Store(models.Model):
 
 
 
+class TimeStamp(models.Model):
+	date_purchased=models.DateTimeField(default=1)
+	customer=models.ForeignKey('Customer', on_delete=models.CASCADE, related_name='date_purchased', blank=True)
+	product=models.ForeignKey('Product', on_delete=models.CASCADE, related_name='date_purchased', blank=True)
 
-
+	def __str__(self):
+		return self.date_purchased
 
 
