@@ -1,24 +1,34 @@
 from django.shortcuts import render
 from django.views.generic import CreateView,DeleteView,UpdateView,ListView,TemplateView,DetailView
 
-
-
 from . models import *
 import numpy as np
 import pandas as pd
 
 def searchbar(request):
 	searchterm = request.POST['search']
-	products=Product.objects.all()
-	req_list=[]
-	for product in products:
-		if searchterm in (product.category.all()[0].name+product.description):
-			req_list.append(product)
+	products = Product.objects.filter(category__name__icontains=searchterm)
 
-	print(product)
+	# print(products)
+	prod1 = Product.objects.filter(description__icontains=searchterm)
+	prod2 = Product.objects.filter(name__icontains=searchterm)
+	prod = prod1|prod2|products
+	print(prod)
+	# req_list=[]
+	# for product in products:
+	# 	# print(product)
+	# 	cat = product.category_set.all()
+	# 	print(cat)
+	# 	if searchterm in product.description:
+	# 		#print(product.category)
+	# 		req_list.append(product)
+
+	# print(product)
+	searchterm = [ p.search.name for p in prod]
+	print(searchterm)
 	
-	context = {'product_list':req_list,'category':searchterm}
-	return render(request,'product_detail',context)
+	context = {'product_list':prod,'category':searchterm}
+	return render(request,'home/product_detail.html',context)
 	
 	
 
