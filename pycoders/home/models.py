@@ -1,4 +1,6 @@
 from django.db import models
+import datetime
+
 
 
 # Create your models here.
@@ -69,6 +71,10 @@ class Store(models.Model):
 
 
 
+class TimeStamp(models.Model):
+	date=models.DateField(default=datetime.datetime.now())
+	customer=models.ForeignKey('Customer', on_delete=models.CASCADE, related_name='date', blank=True)
+	product=models.ForeignKey('Product', on_delete=models.CASCADE, related_name='date', blank=True)
 
 
 
