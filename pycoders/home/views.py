@@ -8,17 +8,20 @@ import numpy as np
 import pandas as pd
 
 def searchbar(request):
-	searchterm = request.POST['search']
+	searchterm = request.POST['search'].lower()
+	print(searchterm)
 	products=Product.objects.all()
 	req_list=[]
 	for product in products:
-		if searchterm in (product.category.all()[0].name+product.description):
+		print(product.category.all()[0])
+		if searchterm in (product.description+product.name):
 			req_list.append(product)
+	print(req_list)
 
-	print(product)
+
 	
 	context = {'product_list':req_list,'category':searchterm}
-	return render(request,'product_detail',context)
+	return render(request,'home/product_detail.html',context)
 	
 	
 
