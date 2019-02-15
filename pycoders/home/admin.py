@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Customer, Brand, Product, Category, Store
+from .models import Customer, Brand, Product, Category, Store, TimeStamp
 
 # Register your models here.
 class ProductAdmin(admin.ModelAdmin):
@@ -20,6 +20,7 @@ class StoreAdmin(admin.ModelAdmin):
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Brand)
+admin.site.register(TimeStamp)
 admin.site.register(Category)
 admin.site.register(Store, StoreAdmin)
 
