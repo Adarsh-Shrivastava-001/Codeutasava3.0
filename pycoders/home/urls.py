@@ -4,10 +4,12 @@ from .views import *
 
 
 app_name='home'
-
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('show/', ListHome.as_view()),
     path('',home,name='homy'),
     path('search/', searchbar, name='search'),
-] 
+    path('shop/', shop, name='shop'),
+]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

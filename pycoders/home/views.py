@@ -25,22 +25,22 @@ def searchbar(request):
 	# 		req_list.append(product)
 
 	# print(product)
-	
+
 	print('search' , searchterm)
 	searchterm='+'.join(searchterm.split(' '))
 	print(searchterm)
 	map_url="https://www.google.com/search?tbm=lcl&ei=VrtnXIP9M4n_vgTXvaXYDg&q="+searchterm+"+shop+near+me&oq=restaurants+shop+near+me&gs_l=psy-ab.12...0.0.0.11730.0.0.0.0.0.0.0.0..0.0....0...1c..64.psy-ab..0.0.0....0.RHVBknoFfus#rlfi=hd:;si:;mv:!1m2!1d21.2681352!2d81.64117399999999!2m2!1d21.236396799999998!2d81.5739983;tbs:lrf:!2m1!1e2!2m1!1e3!2m1!1e16!2m4!1e17!4m2!17m1!1e2!3sIAE,lf:1,lf_ui:9"
-	
+
 	context = {'product_list':prod,'url_search':map_url}
 
 	return render(request,'home/product_detail.html',context)
-	
-	
+
+
 
 
 def home(request):
 	return render(request,'home/home.html')
-	
+
 # Create your views here.
 
 def update_data():
@@ -117,30 +117,30 @@ def update_matrix():
 	    y_up=sigmoid(z_up)
 	    grad_up=inv_sigmoid(z_up)
 	    error_up=y_up-labels_up
-	    
+
 	    user_mat = user_mat - (error_up*grad_up).dot(prod_mat)*eta
 	    prod_mat = prod_mat - ((error_up*grad_up).T).dot(user_mat)*eta
 
-	        
+
 	for i in range(epochs*2):
 	    z_uu=user_mat.dot(user_mat.T)
 	    y_uu=sigmoid(z_uu)
 	    grad_uu=inv_sigmoid(z_uu)
 	    error_uu=y_uu-labels_uu
-	    
+
 	    user_mat = user_mat - (error_uu*grad_uu).dot(user_mat)*eta
 	    user_mat = user_mat - ((error_uu*grad_uu).T).dot(user_mat)*eta
 
 	for i in range(epochs*2):
-    
+
 	    z_ub=user_mat.dot(brand_mat.T)
 	    y_ub=sigmoid(z_ub)
 	    grad_ub=inv_sigmoid(z_ub)
 	    error_ub=y_ub-labels_ub
-	    
+
 	    user_mat = user_mat - (error_ub*grad_ub).dot(brand_mat)*eta
 	    brand_mat = brand_mat - ((error_ub*grad_ub).T).dot(user_mat)*eta
-	    
+
 	    if i%5==0:
 	        print("Updating Database....")
 
@@ -166,6 +166,12 @@ class ListHome(ListView):
 	model=Customer
 	template_name="home/home.html"
 
+
+
+
+def shop(request):
+	return render(request,'home/shop.html')
+
 def plot_time_graph(inp, brand_name, color_l="blue", color_p="red"):
     x=inp[0]
     y=inp[1]
@@ -174,11 +180,3 @@ def plot_time_graph(inp, brand_name, color_l="blue", color_p="red"):
     plt.plot(x,y, color=color_l)
     plt.scatter(x,y, color=color_p)
     plt.savefig(brand_name+".jpg")
-    
-
-
-
-
-
-
-
