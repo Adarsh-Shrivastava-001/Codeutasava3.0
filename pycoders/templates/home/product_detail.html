@@ -1,0 +1,16 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+
+
+{% block contents %}
+
+
+{% for product in product_list %}
+{{product.name}}<br><br>
+{% endfor %}
+
+You can also visit Nearest Store : <a href={{url_search}}> See in google maps</a>
+
+{% endblock %}
+
