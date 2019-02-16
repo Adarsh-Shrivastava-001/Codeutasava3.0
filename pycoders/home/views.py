@@ -25,10 +25,13 @@ def searchbar(request):
 	# 		req_list.append(product)
 
 	# print(product)
-	searchterm = [ p.search.name for p in prod]
-	print(searchterm)
 	
-	context = {'product_list':prod,'category':searchterm}
+	print('search' , searchterm)
+	searchterm='+'.join(searchterm.split(' '))
+	print(searchterm)
+	map_url="https://www.google.com/search?tbm=lcl&ei=VrtnXIP9M4n_vgTXvaXYDg&q="+searchterm+"+shop+near+me&oq=restaurants+shop+near+me&gs_l=psy-ab.12...0.0.0.11730.0.0.0.0.0.0.0.0..0.0....0...1c..64.psy-ab..0.0.0....0.RHVBknoFfus#rlfi=hd:;si:;mv:!1m2!1d21.2681352!2d81.64117399999999!2m2!1d21.236396799999998!2d81.5739983;tbs:lrf:!2m1!1e2!2m1!1e3!2m1!1e16!2m4!1e17!4m2!17m1!1e2!3sIAE,lf:1,lf_ui:9"
+	
+	context = {'product_list':prod,'url_search':map_url}
 
 	return render(request,'home/product_detail.html',context)
 	
@@ -81,8 +84,6 @@ def update_data():
 
 	user_brand_mat=pd.DataFrame(user_brand_mat)
 	user_brand_mat.to_pickle('User_Brand_Label.pkl')
-
-
 
 
 
@@ -144,7 +145,6 @@ def update_matrix():
 	        print("Updating Database....")
 
 
-
 def recommend_prod(pk):
 	relation=read_pickle('user_prod.pkl')
 	poss_prods=np.argsort(relation[pk+1])
@@ -165,3 +165,20 @@ class ListHome(ListView):
 	update_data()
 	model=Customer
 	template_name="home/home.html"
+
+def plot_time_graph(inp, brand_name, color_l="blue", color_p="red"):
+    x=inp[0]
+    y=inp[1]
+    plt.xlabel('Date')
+    plt.ylabel('Revenue')
+    plt.plot(x,y, color=color_l)
+    plt.scatter(x,y, color=color_p)
+    plt.savefig(brand_name+".jpg")
+    
+
+
+
+
+
+
+
