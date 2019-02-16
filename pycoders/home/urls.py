@@ -13,5 +13,6 @@ urlpatterns = [
     path('search/', searchbar, name='search'),
     path('shop/', shop, name='shop'),
     path('sprod/', sprod, name='sprod'),
+    path('product_detail/<int:id>', product_detail, name='product_detail'),
 
 ]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

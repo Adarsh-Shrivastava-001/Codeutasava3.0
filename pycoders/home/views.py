@@ -8,7 +8,7 @@ import pandas as pd
 def searchbar(request):
 
 	searchterm = request.POST['search']
-	# products = Product.objects.filter(category__name__icontains=searchterm)
+	products = Product.objects.filter(category__name__icontains=searchterm)
 	prod1 = Product.objects.filter(description__icontains=searchterm)
 	prod2 = Product.objects.filter(name__icontains=searchterm)
 	prod = prod1|prod2|products
@@ -26,10 +26,25 @@ def searchbar(request):
 
 
 def home(request):
+	cat = Category.objects.all()
+	product_list = {}
+	for c in cat:
+		prod = Product.objects.filter(category=c.name)
+		products = []
+		for i in range(5):
+			products.append(prod[i])
+		product_list[c]=products
+			
 	
-	return render(request,'home/home.html')
+	return render(request,'home/home.html',product_list)
 
 # Create your views here.
+
+def product_detail(request, id):
+	product = Product.objects.get(id=id)
+	context = {'product':product}
+	return render(request,'home/product_details.html',context)
+
 
 def update_data():
 	user_pro_mat=np.zeros((20,40))
@@ -72,7 +87,6 @@ def update_data():
 
 	user_brand_mat=pd.DataFrame(user_brand_mat)
 	user_brand_mat.to_pickle('User_Brand_Label.pkl')
-
 
 
 def update_matrix():
