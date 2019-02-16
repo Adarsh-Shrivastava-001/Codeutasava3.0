@@ -374,6 +374,7 @@
                         <div class="row">
 
                             <!-- Single Product -->
+                            {% for product in products %}
                             <div class="col-12 col-sm-6 col-lg-4">
                                 <div class="single-product-wrapper">
                                     <!-- Product Image -->
@@ -405,6 +406,42 @@
                                             <!-- Add to Cart -->
                                             <div class="add-to-cart-btn">
                                                 <a href="#" class="btn essence-btn">Add to Cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                            <div class="col-12 col-sm-6 col-lg-4">
+                                <div class="single-product-wrapper">
+                                    <!-- Product Image -->
+                                    <div class="product-img">
+                                        <img src="{% static "img/product-img/google.png" %}" alt="">
+                                        <!-- Hover Thumb -->
+                                        <img class="hover-img" src="{% static "img/product-img/google.png" %}" alt="">
+
+                                        <!-- Product Badge -->
+                                        
+                                        <!-- Favourite -->
+                                        <div class="product-favourite">
+                                            <a href={{url_search}} class="favme fa fa-heart"></a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Product Description -->
+                                    <div class="product-description">
+                                        <span>Google Maps</span>
+                                        <a href="{{url_search}}">
+                                            <h6>Your Nearby Stores....</h6>
+                                        </a>
+                                        
+
+                                        <!-- Hover Content -->
+                                        <div class="hover-content">
+                                            <!-- Add to Cart -->
+                                            <div class="add-to-cart-btn">
+                                                <a href="{{url_search}}" class="btn essence-btn">Search</a>
                                             </div>
                                         </div>
                                     </div>
