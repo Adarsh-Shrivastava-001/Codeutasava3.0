@@ -31,7 +31,7 @@ def home(request):
 	for c in cat:
 		prod = Product.objects.filter(category=c)
 		products = []
-		for i in range(2):
+		for i in range(3):
 			products.append(prod[i])
 		product_list[c]=products
 	print(product_list)

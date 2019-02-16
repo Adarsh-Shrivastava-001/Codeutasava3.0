@@ -211,7 +211,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="page-title text-center">
-                        <h2>dresses</h2>
+                        <h2>Welcome !</h2>
                     </div>
                 </div>
             </div>
@@ -379,9 +379,9 @@
                                 <div class="single-product-wrapper">
                                     <!-- Product Image -->
                                     <div class="product-img">
-                                        <img src="{% static "img/product-img/product-1.jpg" %}" alt="">
+                                        <img src="http://127.0.0.1:8000/{{product.image}}" alt="">
                                         <!-- Hover Thumb -->
-                                        <img class="hover-img" src="{% static "img/product-img/product-2.jpg" %}" alt="">
+                                        <img class="hover-img" src="http://127.0.0.1:8000/{{product.image1}}" alt="">
 
                                         <!-- Product Badge -->
                                         <div class="product-badge offer-badge">
@@ -396,7 +396,7 @@
                                     <!-- Product Description -->
                                     <div class="product-description">
                                         <span>{{product.search}}</span>
-                                        <a href="product_detail/{{product.id}}">
+                                        <a href="http://127.0.0.1:8000/product_detail/{{product.id}}">
                                             <h6>{{product.name}}</h6>
                                         </a>
                                         <p class="product-price"><span class="old-price">$75.00</span> Rs. {{product.price}}</p>
@@ -405,7 +405,7 @@
                                         <div class="hover-content">
                                             <!-- Add to Cart -->
                                             <div class="add-to-cart-btn">
-                                                <a href="product_detail/{{product.id}}" class="btn essence-btn">Add to Cart</a>
+                                                <a href="http://127.0.0.1:8000/product_detail/{{product.id}}" class="btn essence-btn">Add to Cart</a>
                                             </div>
                                         </div>
                                     </div>

@@ -24,7 +24,7 @@ from pycoders import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', include('home.urls') ),
+    path('', include('home.urls') , name='back2home'),
     url(r'^static/(?P<path>.*)$', stat.serve, {'document_root': settings.STATIC_ROOT}),
 
 ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
