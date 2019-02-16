@@ -8,24 +8,11 @@ import pandas as pd
 def searchbar(request):
 
 	searchterm = request.POST['search']
-	products = Product.objects.filter(category__name__icontains=searchterm)
-
-	# print(products)
+	# products = Product.objects.filter(category__name__icontains=searchterm)
 	prod1 = Product.objects.filter(description__icontains=searchterm)
 	prod2 = Product.objects.filter(name__icontains=searchterm)
 	prod = prod1|prod2|products
 	print(prod)
-	# req_list=[]
-	# for product in products:
-	# 	# print(product)
-	# 	cat = product.category_set.all()
-	# 	print(cat)
-	# 	if searchterm in product.description:
-	# 		#print(product.category)
-	# 		req_list.append(product)
-
-	# print(product)
-
 	print('search' , searchterm)
 	searchterm='+'.join(searchterm.split(' '))
 	print(searchterm)
@@ -39,6 +26,7 @@ def searchbar(request):
 
 
 def home(request):
+	
 	return render(request,'home/home.html')
 
 # Create your views here.

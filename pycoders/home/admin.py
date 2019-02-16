@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Customer, Brand, Product, Category, Store, TimeStamp
+from .models import Customer, Brand, Product, Category, Store, TimeStamp, DataAnalyst
 
 # Register your models here.
 class ProductAdmin(admin.ModelAdmin):
@@ -23,5 +23,5 @@ admin.site.register(Brand)
 admin.site.register(Category)
 admin.site.register(Store, StoreAdmin)
 admin.site.register(TimeStamp)
-
+admin.site.register(DataAnalyst)
 
