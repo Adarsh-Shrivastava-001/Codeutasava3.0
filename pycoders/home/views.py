@@ -29,21 +29,22 @@ def home(request):
 	cat = Category.objects.all()
 	product_list = {}
 	for c in cat:
-		prod = Product.objects.filter(category=c.name)
+		prod = Product.objects.filter(category=c)
 		products = []
-		for i in range(5):
+		for i in range(2):
 			products.append(prod[i])
 		product_list[c]=products
-			
+	print(product_list)
 	
-	return render(request,'home/home.html',product_list)
+	return render(request,'home/shop.html',product_list)
 
 # Create your views here.
 
 def product_detail(request, id):
 	product = Product.objects.get(id=id)
 	context = {'product':product}
-	return render(request,'home/product_details.html',context)
+	print(context)
+	return render(request,'home/product_detail.html',context)
 
 
 def update_data():
