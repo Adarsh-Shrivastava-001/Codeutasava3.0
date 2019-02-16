@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
 from django.views import static as stat
+from django.conf import settings
+from django.conf.urls.static import static
 from pycoders import settings
 
 
@@ -25,4 +27,4 @@ urlpatterns = [
     path('home/', include('home.urls') ),
     url(r'^static/(?P<path>.*)$', stat.serve, {'document_root': settings.STATIC_ROOT}),
 
-]
+]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
