@@ -27,17 +27,17 @@ def searchbar(request):
 	# print(product)
 	searchterm = [ p.search.name for p in prod]
 	print(searchterm)
-	
+
 	context = {'product_list':prod,'category':searchterm}
 
 	return render(request,'home/product_detail.html',context)
-	
-	
+
+
 
 
 def home(request):
 	return render(request,'home/home.html')
-	
+
 # Create your views here.
 
 def update_data():
@@ -116,30 +116,30 @@ def update_matrix():
 	    y_up=sigmoid(z_up)
 	    grad_up=inv_sigmoid(z_up)
 	    error_up=y_up-labels_up
-	    
+
 	    user_mat = user_mat - (error_up*grad_up).dot(prod_mat)*eta
 	    prod_mat = prod_mat - ((error_up*grad_up).T).dot(user_mat)*eta
 
-	        
+
 	for i in range(epochs*2):
 	    z_uu=user_mat.dot(user_mat.T)
 	    y_uu=sigmoid(z_uu)
 	    grad_uu=inv_sigmoid(z_uu)
 	    error_uu=y_uu-labels_uu
-	    
+
 	    user_mat = user_mat - (error_uu*grad_uu).dot(user_mat)*eta
 	    user_mat = user_mat - ((error_uu*grad_uu).T).dot(user_mat)*eta
 
 	for i in range(epochs*2):
-    
+
 	    z_ub=user_mat.dot(brand_mat.T)
 	    y_ub=sigmoid(z_ub)
 	    grad_ub=inv_sigmoid(z_ub)
 	    error_ub=y_ub-labels_ub
-	    
+
 	    user_mat = user_mat - (error_ub*grad_ub).dot(brand_mat)*eta
 	    brand_mat = brand_mat - ((error_ub*grad_ub).T).dot(user_mat)*eta
-	    
+
 	    if i%5==0:
 	        print("Updating Database....")
 
@@ -165,3 +165,8 @@ class ListHome(ListView):
 	update_data()
 	model=Customer
 	template_name="home/home.html"
+
+
+
+def shop(request):
+	return render(request,'home/shop.html')
