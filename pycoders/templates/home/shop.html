@@ -374,7 +374,7 @@
                         <div class="row">
 
                             <!-- Single Product -->
-                            {% for product in products %}
+                            {% for product in product_list %}
                             <div class="col-12 col-sm-6 col-lg-4">
                                 <div class="single-product-wrapper">
                                     <!-- Product Image -->
@@ -395,11 +395,11 @@
 
                                     <!-- Product Description -->
                                     <div class="product-description">
-                                        <span>topshop</span>
+                                        <span>{{product.search}}</span>
                                         <a href="single-product-details.html">
-                                            <h6>Knot Front Mini Dress</h6>
+                                            <h6>{{product.name}}</h6>
                                         </a>
-                                        <p class="product-price"><span class="old-price">$75.00</span> $55.00</p>
+                                        <p class="product-price"><span class="old-price">$75.00</span> Rs. {{product.price}}</p>
 
                                         <!-- Hover Content -->
                                         <div class="hover-content">
