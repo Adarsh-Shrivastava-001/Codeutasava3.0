@@ -17,4 +17,5 @@ def time_graph(request):
 	return render(request, 'data_analysis/time_revenue.html')
 
 
-
+def dashboard(request):
+	return render(request,'data_analysis/index.html')
