@@ -20,7 +20,7 @@ def searchbar(request):
 
 	context = {'product_list':prod,'url_search':map_url}
 
-	return render(request,'home/product_detail.html',context)
+	return render(request,'home/shop.html',context)
 
 
 
