@@ -8,7 +8,7 @@ app_name='dataanalysis'
 from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
-   
+   path('', dashboard, name='dashboard'),
     path('cluster/', user_cluster, name='search'),
-	path('time/', time_graph, name='time'),    
+	path('time/', time_graph, name='time'),
 ]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
