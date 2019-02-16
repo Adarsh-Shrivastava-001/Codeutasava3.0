@@ -26,10 +26,26 @@ def searchbar(request):
 
 
 def home(request):
+	cat = Category.objects.all()
+	product_list = {}
+	for c in cat:
+		prod = Product.objects.filter(category=c)
+		products = []
+		for i in range(2):
+			products.append(prod[i])
+		product_list[c]=products
+	print(product_list)
 	
-	return render(request,'home/home.html')
+	return render(request,'home/shop.html',product_list)
 
 # Create your views here.
+
+def product_detail(request, id):
+	product = Product.objects.get(id=id)
+	context = {'product':product}
+	print(context)
+	return render(request,'home/product_detail.html',context)
+
 
 def update_data():
 	user_pro_mat=np.zeros((20,40))
@@ -72,7 +88,6 @@ def update_data():
 
 	user_brand_mat=pd.DataFrame(user_brand_mat)
 	user_brand_mat.to_pickle('User_Brand_Label.pkl')
-
 
 
 def update_matrix():
