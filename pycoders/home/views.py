@@ -5,6 +5,8 @@ from . models import *
 import numpy as np
 import pandas as pd
 
+from .dataanalysis import *
+
 def searchbar(request):
 
 	searchterm = request.POST['search']
@@ -180,11 +182,5 @@ def shop(request):
 def sprod(request):
 	return render(request,'home/spdetails.html')
 
-def plot_time_graph(inp, brand_name, color_l="blue", color_p="red"):
-    x=inp[0]
-    y=inp[1]
-    plt.xlabel('Date')
-    plt.ylabel('Revenue')
-    plt.plot(x,y, color=color_l)
-    plt.scatter(x,y, color=color_p)
-    plt.savefig(brand_name+".jpg")
+
+
