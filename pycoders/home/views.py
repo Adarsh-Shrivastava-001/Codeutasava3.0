@@ -35,8 +35,10 @@ def home(request):
 			products.append(prod[i])
 		product_list[c]=products
 	print(product_list)
+
+
 	
-	return render(request,'home/shop.html',product_list)
+	return render(request,'home/shop_home.html', {'product_list':product_list})
 
 # Create your views here.
 

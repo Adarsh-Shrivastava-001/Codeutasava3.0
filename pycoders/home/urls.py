@@ -11,8 +11,8 @@ urlpatterns = [
     path('show/', ListHome.as_view()),
     path('',home,name='homy'),
     path('search/', searchbar, name='search'),
-    path('shop/', shop, name='shop'),
+    path('shop/', home, name='shop'),
     path('sprod/', sprod, name='sprod'),
-    path('product_detail/<int:id>/', product_detail, name='product_detail'),
+    path('search/product_detail/<int:id>/', product_detail, name='product_detail'),
 
 ]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
