@@ -172,6 +172,9 @@ class ListHome(ListView):
 def shop(request):
 	return render(request,'home/shop.html')
 
+def sprod(request):
+	return render(request,'home/spdetails.html')
+
 def plot_time_graph(inp, brand_name, color_l="blue", color_p="red"):
     x=inp[0]
     y=inp[1]

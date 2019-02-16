@@ -12,4 +12,6 @@ urlpatterns = [
     path('',home,name='homy'),
     path('search/', searchbar, name='search'),
     path('shop/', shop, name='shop'),
+    path('sprod/', sprod, name='sprod'),
+
 ]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
