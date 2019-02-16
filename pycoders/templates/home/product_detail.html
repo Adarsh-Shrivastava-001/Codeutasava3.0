@@ -1,5 +1,5 @@
 {% extends 'home/base.html' %}
-{% load static%}
+{% load static %}
 
 
 
@@ -10,7 +10,7 @@
 {{product.name}}<br><br>
 {% endfor %}
 
-You can also visit Nearest Store : <a href="{{category}}"> See in google maps</a>
+You can also visit Nearest Store : <a href={{url_search}}> See in google maps</a>
 
 {% endblock %}
 
