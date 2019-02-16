@@ -8,7 +8,7 @@ import pandas as pd
 def searchbar(request):
 
 	searchterm = request.POST['search']
-	# products = Product.objects.filter(category__name__icontains=searchterm)
+	products = Product.objects.filter(category__name__icontains=searchterm)
 	prod1 = Product.objects.filter(description__icontains=searchterm)
 	prod2 = Product.objects.filter(name__icontains=searchterm)
 	prod = prod1|prod2|products
@@ -20,7 +20,7 @@ def searchbar(request):
 
 	context = {'product_list':prod,'url_search':map_url}
 
-	return render(request,'home/product_detail.html',context)
+	return render(request,'home/shop.html',context)
 
 
 
