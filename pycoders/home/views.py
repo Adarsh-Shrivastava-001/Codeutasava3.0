@@ -51,7 +51,6 @@ def product_detail(request, id):
 	return render(request,'home/product_detail.html',context)
 
 
-<<<<<<< HEAD
 def update_data(request):
 
 	cust_count = Customer.objects.count()
@@ -150,12 +149,6 @@ def update_data(request):
 	# user_brand_mat=pd.DataFrame(user_brand_mat)
 	# user_brand_mat.to_pickle('User_Brand_Label.pkl')
 
-=======
-from collections import Counter
-import numpy as np
-import pandas as pd
-import operator
->>>>>>> 04f852cf959edacbc800dc203eb6a834fd3959dd
 
 def update_matrix():
 	dim=40
@@ -370,34 +363,10 @@ def update_data(request):
 # 	    if i%5==0:
 # 	        print("Updating Database....")
 
-<<<<<<< HEAD
 # class ListHome(ListView):
 # 	update_data()
 # 	model=Customer
 # 	template_name="home/home.html"
-=======
-
-# def recommend_prod(pk):
-# 	relation=read_pickle('user_prod.pkl')
-# 	poss_prods=np.argsort(relation[pk+1])
-# 	return poss_prods
-
-# def recommend_user(pk):
-# 	relation=read_pickle('user_user.pkl')
-# 	poss_friends=np.argsort(relation[pk+1])
-# 	return poss_friends
-
-# def recommend_user(pk):
-# 	relation=read_pickle('user_brand.pkl')
-# 	poss_brands=np.argsort(relation[pk+1])
-# 	return poss_brands
-
-
-# # class ListHome(ListView):
-# # 	update_data()
-# # 	model=Customer
-# # 	template_name="home/home.html"
->>>>>>> 04f852cf959edacbc800dc203eb6a834fd3959dd
 
 
 
