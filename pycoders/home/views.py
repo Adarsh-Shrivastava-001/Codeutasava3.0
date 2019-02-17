@@ -92,15 +92,20 @@ def update_matrix():
 	return user_mat, prod_mat
 
 def get_recommendations(request,id):
+    
     user_history = pd.read_pickle('User_Prod_Label.pkl')
+    custm = Customer.objects.get(id=id)
+    curr_history1 = list(custm.history.all())
+    curr_history = [ i.id-1 for i in curr_history1]
+    print(curr_history)
     id = id-1
     curr_user_prods = np.array(user_history.iloc[id:(id+1),:])
     current_user_bought = np.where(curr_user_prods>0)[1]
     current_user_wishlist = np.where(curr_user_prods==1)[1]
-    curr_history = set(current_user_bought.tolist())
-    curr_history = list(curr_history)
+    # curr_history = set(current_user_bought.tolist())
+    # curr_history = list(curr_history)
     count_arr=[]
-    for i in range(50):
+    for i in range(20):
         
         user_vect, product_vect = update_matrix()    
         user = user_vect[0]
@@ -121,7 +126,7 @@ def get_recommendations(request,id):
         count_arr.append(nind_new[-10:])
     
     freq_arr = []
-    for j in range(50):
+    for j in range(20):
         for i in count_arr[j]:
             freq_arr.append(i)
     
@@ -131,7 +136,7 @@ def get_recommendations(request,id):
     results = []
     counter=0
     for item in sorted_c:
-        if counter>5:
+        if counter>5 or item[1]<10:
             break
         else:
             results.append(item[0])
@@ -139,11 +144,16 @@ def get_recommendations(request,id):
     print(results)
             
     product_list = []
+    wish_list = []
+    for w in current_user_wishlist:
+    	wish = Product.objects.get(id=w+1)
+    	wish_list.append(wish)
     for  r in results:
         prod = Product.objects.get(id=r+1)
         product_list.append(prod)
     print(product_list)
-    return render(request,'home/recommend.html',{'product_list':product_list})
+    print(wish_list)
+    return render(request,'home/recommend.html',{'product_list':product_list,'wish_list':wish_list})
 
 
 def update_data(request):
@@ -191,7 +201,7 @@ def update_data(request):
 
 		cust_id=customer_set[i].pk
 		for j in category1_id:
-			user_pro_mat[cust_id-1][j-1]=-1
+			user_pro_mat[cust_id-1][j-1]=0
 		for j in category2_id:
 			user_pro_mat[cust_id-1][j-1]=0.4
 		for j in category3_id:
