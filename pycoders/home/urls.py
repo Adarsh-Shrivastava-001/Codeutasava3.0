@@ -11,8 +11,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('show/', ListHome.as_view()),
     path('',home,name='home'),
+    path('<int:id>', get_recommendations, name='recommended'),
     path('search/', searchbar, name='search'),
-    # path('shop/', home, name='shop'),
+    path('update/', update_data, name='shop'),
     # path('sprod/', sprod, name='sprod'),
     path('product_detail/<int:id>/', product_detail, name='product_detail'),
     path('update_data/',update_data)

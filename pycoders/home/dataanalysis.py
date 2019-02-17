@@ -14,6 +14,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 from sklearn.decomposition import TruncatedSVD
+import pandas as pd
+import numpy as np
 
 def find_optimum_n(x1,x2, brand):
     # plt.title('Dataset')
@@ -58,11 +60,12 @@ def find_optimum_n(x1,x2, brand):
     return n_optimum
 
 def cluster(user_embeddings,brand):
-   
+    
     pca = TruncatedSVD(n_components=2)
+    size=len(user_embeddings)
     reduced_user_embeddings = pca.fit_transform(user_embeddings)
-    x = [  reduced_user_embeddings[i][0] for i in range(20)]
-    y = [ reduced_user_embeddings[i][1] for i in range(20) ]
+    x = [  reduced_user_embeddings[i][0] for i in range(size)]
+    y = [ reduced_user_embeddings[i][1] for i in range(size) ]
     x1 = np.array(x)
     x2 = np.array(y)   
     n = find_optimum_n(x1,x2, brand)
@@ -80,9 +83,12 @@ def plot_clusters(user_cluster,x,y, brand):
         c = user_cluster[i]
         col = ['red','blue','green','brown','purple']
         plt.scatter(x_,y_, color=col[c])
+
 #
     plt.savefig("static/graphs/"+brand+'clusters.jpg')
     plt.close()
+
+    
     
 # cluster(user_mat, 'z')
 
@@ -96,3 +102,60 @@ def plot_time_graph(inp, brand_name, color_l="blue", color_p="red"):
     plt.plot(x,y, color=color_l)
     plt.scatter(x,y, color=color_p)
     plt.savefig("static/graphs/"+brand_name+"_time.jpg")
+
+
+def csv_to_numpy(csv_file):
+    new_data=pd.read_csv(csv_file)
+    mat=np.array(new_data)
+
+    max_=np.max(mat)
+    new_mat=np.zeros((len(mat),max_))
+
+    for i in range(len(mat)):
+        for j in range(max_):
+            if j in mat[i][1:]:
+                new_mat[i][j]=1
+    return new_mat
+
+
+
+def user_embedding(mat):
+    dim=30
+    nu,n_p=np.shape(mat)
+
+
+    user_mat=np.random.random((nu,dim))
+    prod_mat=np.random.random((n_p,dim))
+
+    labels_up=mat
+
+
+
+    epochs=500
+    eta=0.005
+    lam=0.01
+
+    def sigmoid(arr):
+        return 1/(1+np.exp(-1*arr))
+
+    def inv_sigmoid(arr):
+        return sigmoid(arr)*(1-sigmoid(arr))
+
+    for i in range(epochs):
+        z_up=user_mat.dot(prod_mat.T)
+        y_up=sigmoid(z_up)
+        grad_up=inv_sigmoid(z_up)
+        error_up=y_up-labels_up
+
+        user_mat = user_mat - (error_up*grad_up).dot(prod_mat)*eta
+        prod_mat = prod_mat - ((error_up*grad_up).T).dot(user_mat)*eta
+
+    print(np.shape(user_mat))
+
+    return user_mat
+
+
+
+
+
+      
