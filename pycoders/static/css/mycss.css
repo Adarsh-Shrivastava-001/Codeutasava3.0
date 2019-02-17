@@ -9,10 +9,11 @@
 .block1 {
 	float : left;
 	height: 500px;
-	width : 400px;
+	width : 600px;
 }
 
 .graph1 {
 	height:400px;
-	width:600px;
+	width:700px;
+	margin: 15px;
 }
