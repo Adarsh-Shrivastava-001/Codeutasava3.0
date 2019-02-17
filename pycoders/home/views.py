@@ -96,8 +96,8 @@ def update_data():
 
 def update_matrix():
 	dim=10
-	nu=20
-	n_p=40
+	nu=len(Customer.objects.all())
+	n_p=len(Product.objects.all())
 
 
 	user_mat=np.random.random((nu,dim))
