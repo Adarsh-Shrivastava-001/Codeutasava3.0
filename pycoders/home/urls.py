@@ -16,5 +16,6 @@ urlpatterns = [
     path('update/', update_data, name='shop'),
     # path('sprod/', sprod, name='sprod'),
     path('product_detail/<int:id>/', product_detail, name='product_detail'),
+    path('update_data/',update_data)
 
 ]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

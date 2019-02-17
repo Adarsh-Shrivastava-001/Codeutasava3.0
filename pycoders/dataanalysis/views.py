@@ -12,8 +12,8 @@ def user_cluster(request):
 	return render(request, 'data_analysis/user_cluster.html')
 
 def time_graph(request):
-	dataset=pd.read_pickle("User_Prod_Label.pkl")
-	plot_time_graph(dataset, 'essence', color_l="blue", color_p="red")
+	# dataset=pd.read_pickle("User_Prod_Label.pkl")
+	# plot_time_graph(dataset, 'essence', color_l="blue", color_p="red")
 	return render(request, 'data_analysis/time_revenue.html')
 
 
