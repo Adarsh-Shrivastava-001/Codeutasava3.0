@@ -2,31 +2,85 @@
 {% load static %}
 <html>
 <head>
-	<title></title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/mycss.css' %}">
+  <title></title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/mycss.css' %}">
 
 </head>
 <body>
-	<div class="jumbotron"></div>
-	<div class ="block1">
-	<img src="{% static 'graphs/third_elbow.jpg' %}" class="graph1"><br>
-	<img src="{% static 'graphs/third_clusters.jpg' %}" class="graph1">
-	</div>
-	<div class="block2">
-		<div class="jumbotron">
-				<h1>Data Analysis</h1>
-				
-				Total number of customers : <br>
-				Suggested Number of Clusters :	<br>
-				Selected Number of Clusters : <br>
-				Results Summary : 	<br>
-				
+<div class="jumbotron">
+
+
+  <!-- <div class="notepaper"> -->
+  <!-- <figure class="quote">
+    <blockquote class="curly-quotes" cite="https://www.youtube.com/watch?v=qYLrc9hy0t0">
+      In GOD we trust,
+      All others must bring data
+    </blockquote>
+    <figcaption class="quote-by">— Jim Rohn</figcaption>
+  </figure> -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+</div>
+<!-- </div> -->
+  <div >
+  <img src="{% static 'graphs/third_elbow.jpg' %}" class="graph1">
+  <img src="{% static 'graphs/third_clusters.jpg' %}" class="graph1">
+  </div>
+  <div >
+    <div class="jumbotron">
+        
+
+        <center><h1>Data Analysis</h1><br>
+
+
+        <form action="/action_page.php">
+  Enter of the no of Cluster:: <input type="number" name="fname">
+  <input type="submit" value="Redraw">
+</form><br>
+        <b>Total number of customers : 50 <br>
+        Suggested Number of Clusters : 2  <br>
+        Selected Number of Clusters : 2 <br></B>
+        <h4><br><b>Results Summary : </b>  <br></h4>
+       <b> 2 Clusters were found :</b><br><br>
+         <h4>Characterstics of cluster 1 :</h4><br>
+
+         Mean Age : 23.5 years<br>
+         Gender Ratio : 15% Males and 85% Females<br>
+         Average Salary : Rs 40000<br><br>
+
+        <h4> Characterstics of cluster 1 :</h4><br>
+
+         Mean Age : 28 years<br>
+         Gender Ratio : 45% Males and 55% Females<br>
+         Average Salary : Rs 67800<br>
 
 
 
-		</div>
-	</div>
+</center>
+
+    </div>
+  </div>
 
 
 
