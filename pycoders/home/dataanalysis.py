@@ -60,11 +60,12 @@ def find_optimum_n(x1,x2, brand):
     return n_optimum
 
 def cluster(user_embeddings,brand):
-   
+    
     pca = TruncatedSVD(n_components=2)
+    size=len(user_embeddings)
     reduced_user_embeddings = pca.fit_transform(user_embeddings)
-    x = [  reduced_user_embeddings[i][0] for i in range(20)]
-    y = [ reduced_user_embeddings[i][1] for i in range(20) ]
+    x = [  reduced_user_embeddings[i][0] for i in range(size)]
+    y = [ reduced_user_embeddings[i][1] for i in range(size) ]
     x1 = np.array(x)
     x2 = np.array(y)   
     n = find_optimum_n(x1,x2, brand)
@@ -82,9 +83,12 @@ def plot_clusters(user_cluster,x,y, brand):
         c = user_cluster[i]
         col = ['red','blue','green','brown','purple']
         plt.scatter(x_,y_, color=col[c])
+
 #
     plt.savefig("static/graphs/"+brand+'clusters.jpg')
     plt.close()
+
+    
     
 # cluster(user_mat, 'z')
 
@@ -116,7 +120,7 @@ def csv_to_numpy(csv_file):
 
 
 def user_embedding(mat):
-    dim=10
+    dim=30
     nu,n_p=np.shape(mat)
 
 
@@ -127,7 +131,7 @@ def user_embedding(mat):
 
 
 
-    epochs=1000
+    epochs=500
     eta=0.005
     lam=0.01
 
@@ -145,6 +149,8 @@ def user_embedding(mat):
 
         user_mat = user_mat - (error_up*grad_up).dot(prod_mat)*eta
         prod_mat = prod_mat - ((error_up*grad_up).T).dot(user_mat)*eta
+
+    print(np.shape(user_mat))
 
     return user_mat
 

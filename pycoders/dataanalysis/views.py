@@ -24,6 +24,6 @@ def third_party(request):
 	csv_file='test.csv'
 	csv_np=csv_to_numpy(csv_file)
 	mat=user_embedding(csv_np)
-	cluster(mat, 'third_')
+	cluster(mat, 'third__')
 	return render(request, 'data_analysis/user_cluster_third.html')
 
