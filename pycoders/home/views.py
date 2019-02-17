@@ -7,6 +7,9 @@ import pandas as pd
 
 from .dataanalysis import *
 
+from collections import Counter
+import operator
+
 def searchbar(request):
 
 	searchterm = request.POST['search']
