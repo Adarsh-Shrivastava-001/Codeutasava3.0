@@ -39,7 +39,7 @@ def home(request):
 	print(product_list)
 
 
-	
+
 	return render(request,'home/shop_home.html', {'product_list':product_list})
 
 # Create your views here.
