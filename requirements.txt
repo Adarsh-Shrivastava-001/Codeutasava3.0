@@ -167,7 +167,7 @@ PyDispatcher==2.0.5
 pydot==1.2.4
 pyemd==0.5.1
 pyflakes==1.6.0
-Pygments==2.2.0
+Pygments==2.7.4
 pygraphviz==1.5
 PyJWT==1.6.4
 pylint==1.8.2
