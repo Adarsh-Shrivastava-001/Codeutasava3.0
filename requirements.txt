@@ -129,7 +129,7 @@ numpydoc==0.7.0
 nxpd==0.2.0
 odo==0.5.1
 olefile==0.45.1
-opencv-python==3.4.0.14
+opencv-python==4.2.0.32
 openpyxl==2.4.10
 Orange3==3.4.1
 packaging==16.8
